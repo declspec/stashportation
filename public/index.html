@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.24.2/codemirror.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-override.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/highlightjs-github.css" />    
+        <link rel="stylesheet" type="text/css" href="/dist/stash.app.css" />
+
+        <base href="/" />
+
+        <title>Stashportation</title>
+    </head>
+    
+    <body ng-app="stash.app" ng-strict-di ng-cloak class="ng-cloak">
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header pull-left">
+                    <a href ui-sref="index" class="navbar-brand navbar-content">Stashportation</a>
+                </div>
+            </div>
+        </div>
+
+        <div ui-view></div>
+        <div modal-dialog></div>
+        
+        <script src="/dist/vendor.js"></script>
+        <script src="/dist/stash.app.js"></script>
+    </body>
+</html>
