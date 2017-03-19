@@ -19,7 +19,7 @@ module.exports = {
 
     entry: {
         'stash.app': './src/stash/app.js',
-        'vendor': [ 'angular', 'angular-ui-router', './src/polyfills/index.js' ]
+        'vendor': [ 'angular', 'angular-ui-router', './lib/polyfills/index.js' ]
     },
 
     output: {
@@ -30,6 +30,9 @@ module.exports = {
 
     resolve: {
         extensions: [ '.js' ], 
+        alias: {
+            lib: path.resolve('lib')
+        },
         modules: [ 
             path.resolve('src'),
             'node_modules'
