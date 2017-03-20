@@ -13,18 +13,20 @@ body {
     padding: 0 !important;
     border-right: 1px solid #e8e8e8; }
     .stash-editor .editor-pane .editor {
-      height: calc(100% - 60px);
-      border-bottom: 1px solid #e8e8e8; }
-    .stash-editor .editor-pane .action-bar {
-      height: 60px;
-      padding: 15px; }
-      .stash-editor .editor-pane .action-bar .btn + .btn {
-        margin-right: 10px; }
+      height: 100%; }
   .stash-editor .preview-pane, .stash-editor .editor-pane {
-    height: 100%; }
+    height: calc(100% - 60px) !important;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8; }
   .stash-editor .preview-pane {
     padding: 15px;
     overflow: auto; }
+  .stash-editor .action-bar {
+    height: 60px;
+    padding: 15px;
+    border: 1px solid #e8e8e8; }
+    .stash-editor .action-bar .btn + .btn {
+      margin-right: 10px; }
 
 .CodeMirror {
   min-height: 100%;
@@ -34,16 +36,23 @@ body {
 .CodeMirror-scroll {
   overflow: auto; }
 
-.markdown {
+.markdown .title {
+  text-align: center;
+  margin: 0px 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc; }
+
+.markdown .content {
   color: #333;
-  font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif !important; }
-  .markdown pre {
+  font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif !important;
+  padding: 10px; }
+  .markdown .content pre {
     color: inherit !important; }
-  .markdown img {
+  .markdown .content img {
     max-width: 100%; }
-  .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  .markdown .content h1, .markdown .content h2, .markdown .content h3, .markdown .content h4, .markdown .content h5, .markdown .content h6 {
     font-weight: bold; }
-  .markdown > *:first-child {
+  .markdown .content > *:first-child {
     margin-top: 0 !important; }
 
 .stash-metadata {
