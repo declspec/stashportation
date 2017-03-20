@@ -16,13 +16,14 @@ export class EditView {
         this.stashService = stashService;
 
         this.options = EDITOR_OPTIONS;
-        this.settings = {};
+        this.settings = { };
 
         if (!state.params.id || state.params.stash) 
             this.stash = state.params.stash || {};
         else {
-            this.stashService.get(state.params.id)
-                .then(stash => this.stash = stash);
+            this.stashService.get(state.params.id).then(stash => {
+                return stash ? (this.stash = stash) : state.go('new');
+            });
         }
     }
 

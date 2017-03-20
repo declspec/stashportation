@@ -5,6 +5,15 @@ body {
     overflow: hidden;   
 }
 
+.preview-pane {
+    padding: 15px;   
+    overflow: auto;
+    height: 100%;
+
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+}
+
 .stash-editor {
     width: 100%;
     position: absolute;
@@ -14,6 +23,7 @@ body {
 
     .editor-pane {
         padding: 0 !important;   
+        border-left: 1px solid #e8e8e8;
         border-right: 1px solid #e8e8e8;
         
         .editor { height: 100%; }
@@ -21,13 +31,6 @@ body {
 
     .preview-pane, .editor-pane {
         height: calc(100% - #{$actionbar-rowheight}) !important;
-        border-left: 1px solid #e8e8e8;
-        border-right: 1px solid #e8e8e8;
-    }
-
-    .preview-pane {
-        padding: 15px;   
-        overflow: auto;
     }
 
     .action-bar {

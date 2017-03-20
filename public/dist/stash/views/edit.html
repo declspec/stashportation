@@ -18,7 +18,7 @@
 
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 preview-pane" ng-if="vm.isActive('preview')">
             <div class="markdown">
-                <h2 class="title" ng-bind="vm.stash.title"></h2>
+                <h2 class="title" ng-bind="vm.stash.title || '<no title>'"></h2>
                 <div class="content" ng-bind-html="::(vm.stash.content | markdown)"></div>
             </div>
         </div>

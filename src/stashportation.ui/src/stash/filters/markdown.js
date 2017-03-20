@@ -24,8 +24,5 @@ const MD = markdownit({
 
 MarkdownFilterProvider.$inject = [ '$sce' ];
 export function MarkdownFilterProvider($sce) {
-    return (str) => {
-        console.log('markdown::render()', !str);
-        return $sce.trustAsHtml(str ? MD.render(str) : '');
-    };
+    return (str) => $sce.trustAsHtml(str ? MD.render(str) : '');
 }
