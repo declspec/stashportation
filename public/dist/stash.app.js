@@ -1406,6 +1406,12 @@ function RouteConfig(stateProvider, urlRouterProvider, locationProvider, urlMatc
         controller: 'EditView',
         controllerAs: 'vm',
         templateUrl: __webpack_require__(9)
+    }).state('view', {
+        url: '/view/:id',
+        params: { id: { value: null, type: 'int' } },
+        controller: 'ViewView',
+        controllerAs: 'vm',
+        templateUrl: __webpack_require__(273)
     });
 
     urlRouterProvider.otherwise('/new');
@@ -1522,7 +1528,6 @@ var MD = (0, _markdownIt2.default)({
 MarkdownFilterProvider.$inject = ['$sce'];
 function MarkdownFilterProvider($sce) {
     return function (str) {
-        console.log('markdown::render()', !str);
         return $sce.trustAsHtml(str ? MD.render(str) : '');
     };
 }
@@ -1641,7 +1646,7 @@ var EditView = exports.EditView = (_dec = (0, _core.inject)('$state', 'StashServ
 
         if (!state.params.id || state.params.stash) this.stash = state.params.stash || {};else {
             this.stashService.get(state.params.id).then(function (stash) {
-                return _this.stash = stash;
+                return stash ? _this.stash = stash : state.go('new');
             });
         }
     }
@@ -37518,21 +37523,58 @@ var _codeEditor = __webpack_require__(24);
 
 var _edit = __webpack_require__(27);
 
+var _view = __webpack_require__(274);
+
 var _stash = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Components
+var app = _angular2.default.module('stash.app', [_angularUiRouter2.default, _lib4.default, _lib2.default, _ngModalDialog2.default]).config(_routes.RouteConfig).controller('EditView', _edit.EditView).controller('ViewView', _view.ViewView).filter('markdown', _markdown.MarkdownFilterProvider).directive('codeEditor', (0, _coreUi.directive)(_codeEditor.CodeEditorDirective)).service('StashService', _stash.StashService);
+
+// Services
+
 
 // Views
 
 
 // Config
-var app = _angular2.default.module('stash.app', [_angularUiRouter2.default, _lib4.default, _lib2.default, _ngModalDialog2.default]).config(_routes.RouteConfig).controller('EditView', _edit.EditView).filter('markdown', _markdown.MarkdownFilterProvider).directive('codeEditor', (0, _coreUi.directive)(_codeEditor.CodeEditorDirective)).service('StashService', _stash.StashService);
-
-// Services
-
-
-// Components
 exports.default = app.name;
+
+/***/ }),
+/* 272 */,
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "stash/views/view.html";
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ViewView = undefined;
+
+var _dec, _class;
+
+var _core = __webpack_require__(8);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ViewView = exports.ViewView = (_dec = (0, _core.inject)('$state', 'StashService'), _dec(_class = function ViewView(state, stashService) {
+    var _this = this;
+
+    _classCallCheck(this, ViewView);
+
+    stashService.get(state.params.id).then(function (stash) {
+        _this.stash = stash;
+    });
+}) || _class);
 
 /***/ })
 ],[271]);

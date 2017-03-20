@@ -19,6 +19,13 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
             controller: 'EditView',
             controllerAs: 'vm',
             templateUrl: require('../views/edit.html')
+        })
+        .state('view', {
+            url: '/view/:id',
+            params: { id: { value: null, type: 'int' } },
+            controller: 'ViewView',
+            controllerAs: 'vm',
+            templateUrl: require('../views/view.html')
         });
         
 

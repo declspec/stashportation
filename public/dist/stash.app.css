@@ -1,6 +1,13 @@
 body {
   overflow: hidden; }
 
+.preview-pane {
+  padding: 15px;
+  overflow: auto;
+  height: 100%;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8; }
+
 .stash-editor {
   width: 100%;
   position: absolute;
@@ -11,16 +18,12 @@ body {
   margin: 0; }
   .stash-editor .editor-pane {
     padding: 0 !important;
+    border-left: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8; }
     .stash-editor .editor-pane .editor {
       height: 100%; }
   .stash-editor .preview-pane, .stash-editor .editor-pane {
-    height: calc(100% - 60px) !important;
-    border-left: 1px solid #e8e8e8;
-    border-right: 1px solid #e8e8e8; }
-  .stash-editor .preview-pane {
-    padding: 15px;
-    overflow: auto; }
+    height: calc(100% - 60px) !important; }
   .stash-editor .action-bar {
     height: 60px;
     padding: 15px;

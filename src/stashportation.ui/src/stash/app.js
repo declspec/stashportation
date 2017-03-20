@@ -16,6 +16,7 @@ import { CodeEditorDirective } from './directives/code-editor';
 
 // Views
 import { EditView } from './views/edit';
+import { ViewView } from './views/view';
 
 // Services
 import { StashService } from './services/stash';
@@ -24,6 +25,7 @@ const app = angular.module('stash.app', [ uiRouter, core, coreUi, ngModalDialog 
     .config(RouteConfig)
 
     .controller('EditView', EditView)
+    .controller('ViewView', ViewView)
 
     .filter('markdown', MarkdownFilterProvider)
     .directive('codeEditor', directive(CodeEditorDirective))
