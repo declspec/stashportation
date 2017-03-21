@@ -22,14 +22,14 @@
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header pull-left">
-                    <a href="#" ui-sref="index" class="navbar-brand navbar-content">Stashportation</a>
+                    <a href="/" class="navbar-brand navbar-content">Stashportation</a>
                 </div>
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="$query" />
-                    </div>
-                    <a href="#" ui-sref="search.query({ q: $query })" class="btn btn-primary">Search</a>
-                </form>
+                <div class="navbar-right">
+                    <a href="#" ui-sref="search.form" class="navbar-link navbar-content">Search</a>
+                </div>
+                <div class="navbar-right">
+                    <a href="#" ui-sref="new" class="navbar-link navbar-content">New Stash</a>
+                </div>
             </div>
         </div>
 

@@ -26,25 +26,34 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
             controller: 'ViewView',
             controllerAs: 'vm',
             templateUrl: require('../views/view.html')
-        })
+        });
+
+    // Search routes
+    stateProvider
         .state('search', {
             abstract: true,
             url: '/search',
             template: '<div ui-view></div>'
         })
-            .state('search.query', {
-                url: '/?q'
-            })
-            .state('search.tag', {
-                url: '/tag/:tag'
-            })
-            .state('search.form', {
-                url: '',
-                controller: ['$scope', 'StashService', ($scope, stashService) => stashService.getAllTags().then(tags => $scope.tags = tags) ],
-                templateUrl: require('../views/search/form.html')
-            })
+        .state('search.query', {
+            url: '/?q',
+            templateUrl: require('../views/search/results.html'),
+            controller: ['StashService', function(s) { s.getAll().then(res => this.results = res) } ],
+            controllerAs: 'vm'
+        })
+        .state('search.tag', {
+            url: '/tag/:tag',
+            templateUrl: require('../views/search/results.html'),
+            controller: ['StashService', function(s) { s.getAll().then(res => this.results = res) } ],
+            controllerAs: 'vm'
+        })
+        .state('search.form', {
+            url: '',
+            controller: ['$scope', 'StashService', ($scope, stashService) => stashService.getAllTags().then(tags => $scope.tags = tags) ],
+            templateUrl: require('../views/search/form.html')
+        })
             
             
 
-    urlRouterProvider.otherwise('/new');
+    urlRouterProvider.otherwise('/search');
 }

@@ -87,6 +87,9 @@ body {
     text-align: center;
     width: 100%;
     color: inherit; }
+
+.stash-summary {
+  border-bottom: 1px solid #e8e8e8; }
 .borderless-input {
   border: 0;
   outline: 0; }
