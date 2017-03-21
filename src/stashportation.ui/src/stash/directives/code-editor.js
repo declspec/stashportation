@@ -7,10 +7,12 @@ CodeEditorDirective.prototype = {
     link: function(scope, element, attrs, ngModel) {
         var config = scope.$eval(attrs['codeEditor']) || {},
             editor = createEditor(element[0], config);
-            
+        
         editor.on('changes', update);
         scope.$on('$destroy', () => editor.off('changes', update));
         ngModel.$render = () => editor.setValue(ngModel.$viewValue || '');
+
+        ngModel.$render();
 
         function update() {
             ngModel.$setViewValue(editor.getValue());

@@ -53,14 +53,22 @@ body {
 }
 
 .markdown {
-    .title {
+    .markdown-header {
         text-align: center;
         margin: 0px 20px;
         padding-bottom: 15px;
         border-bottom: 1px dashed #ccc;
+        position: relative;
+
+        .title { margin-top: 10px; }
+        .edit-link { 
+            position: absolute;
+            top: 5px;
+            right: 0px;
+        }
     }
 
-    .content {
+    .markdown-content {
         color: #333;
         font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif !important;
         padding: 10px;

@@ -2,13 +2,20 @@
     <div class="row" style="height:100%">
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 preview-pane">
             <div class="markdown" ng-if="::vm.stash">
-                <a href="#" class="btn btn-sm btn-success pull-right" ui-sref="edit({id: vm.stash.id})">Edit</a>
-                <h2 class="title" ng-bind="vm.stash.title || '<no title>'"></h2>
-                <div class="content" ng-bind-html="::(vm.stash.content | markdown)"></div>
+                <div class="markdown-header">
+                    <a href="#" class="edit-link btn btn-sm btn-success" ui-sref="edit({id: vm.stash.id})">Edit Stash</a>
+                    <h2 class="title" ng-bind="::(vm.stash.title || '[ untitled stash ]')"></h2>
+                    <div class="tag-cloud">
+                        <span ng-repeat="tag in ::vm.stash.tags">
+                            <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="markdown-content" ng-bind-html="::(vm.stash.content | markdown)"></div>
             </div>
 
             <div ng-if="::!vm.stash">
-                <h1>No stash found</h1>
+                <h1 class="text-center">Oops, this stash may have been removed</h1>
             </div>
         </div>
     </div>
