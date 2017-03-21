@@ -1,0 +1,31 @@
+<form class="main-content">
+    <div class="container text-center">
+        <h1>Search Stashes</h1>
+        <p>Quickly find a stash by its title.</p>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="vm.$$query" value="" />
+                    <span class="input-group-btn">
+                        <a href="#" ui-sref="search.query({ q: vm.$$query })">
+                            <button class="btn btn-primary" ng-disabled="!vm.$$query">Search</button>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="content">
+                    <p>Alternatively, pick a tag to find all stashes marked with that tag.</p>
+                    <div class="tag-cloud">
+                        <span ng-repeat="tag in ::tags">
+                            <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -31,6 +31,16 @@ export class StashService {
         return this.promise.when(this.stashCache[id] || null);
     }
 
+    getAllTags() {
+        return this.promise.when([
+            "javascript","java","c#","php","android","jquery","python","html","c++",
+            "ios","css","mysql","sql","asp.net","objective-c","ruby-on-rails",".net",
+            "c","angularjs","arrays","iphone","sql-server","json","ruby","r","ajax",
+            "node.js","regex","xml","asp.net-mvc","linux","swift","django","wpf",
+            "database","excel"
+        ]);
+    }
+
     $loadCache() {
         this.stashCache = JSON.parse(sessionStorage.getItem('stashportation::stashCache') || '{}');
     }

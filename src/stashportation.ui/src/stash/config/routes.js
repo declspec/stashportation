@@ -29,17 +29,22 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
         })
         .state('search', {
             abstract: true,
-            url: '/search'
+            url: '/search',
+            template: '<div ui-view></div>'
         })
-            .state('search.form', {
-                url: ''
+            .state('search.query', {
+                url: '/?q'
             })
             .state('search.tag', {
                 url: '/tag/:tag'
             })
-            .state('search.query', {
-                url: '?q'
-            });
+            .state('search.form', {
+                url: '',
+                controller: ['$scope', 'StashService', ($scope, stashService) => stashService.getAllTags().then(tags => $scope.tags = tags) ],
+                templateUrl: require('../views/search/form.html')
+            })
+            
+            
 
     urlRouterProvider.otherwise('/new');
 }
