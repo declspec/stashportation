@@ -46,10 +46,19 @@ a.glyphicon {
     text-decoration: none;
     color: #ccc; }
 
-.main-content {
+.main-content-fixed {
   top: 51px;
   bottom: 0;
   width: 100%;
   position: absolute; }
+
+.main-content {
+    margin-top: 51px;
+    width: 100%;
+}
+
+.content {
+    padding: 15px;
+}
 
 /*# sourceMappingURL=bootstrap-override.css.map */

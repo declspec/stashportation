@@ -1,36 +1,42 @@
-<form name="form" novalidate class="container-fluid main-content">
-    <div class="stash-metadata row">
-        <div class="col col-sm-5 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3 col-xs-10">
-            <h2 class="title-text">Title <span style="color:red" ng-show="form.title.$error.required">Please enter a title</span></h2>
-            <input id="title" name="title" class="input-box borderless-input" ng-model="vm.stash.title" type="text" value="" />
-        </div>
-        <div class="col col-sm-7 col-md-4 col-xs-2 col-lg-3">
-            <h2 class="title-text">Tags</h2>
-            <div tag-editor ng-model="vm.stash.tags" ng-model-options="{ debounce: 300 }"></div>
-            <a href class="glyphicon visible-xs-inline-block glyphicon-tag inline-tag" title="Tag" ng-click="vm.showTagPrompt()"></a>
-        </div>
+<form name="form" novalidate class="main-content-fixed">
+    <div class="stash-metadata">
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-5 col-md-6 col-xs-10">
+                    <h2 class="title-text">Title</h2>
+                    <input id="title" name="title" class="input-box borderless-input" ng-model="vm.stash.title" type="text" value="" />
+                </div>
+                <div class="col col-sm-7 col-md-6 col-xs-2">
+                    <h2 class="title-text">Tags</h2>
+                    <div tag-editor ng-model="vm.stash.tags" ng-model-options="{ debounce: 300 }"></div>
+                    <a href class="glyphicon visible-xs-inline-block glyphicon-tag inline-tag" title="Tag" ng-click="vm.showTagPrompt()"></a>
+                </div>
+            </div>
+        </div>        
     </div>
 
-    <div class="stash-editor row">
-        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 editor-pane" ng-if="!vm.isActive('preview')">
-            <div class="editor" code-editor="vm.options" ng-model="vm.stash.content"></div>
-        </div>
-
-        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 preview-pane" ng-if="vm.isActive('preview')">
-            <div class="markdown">
-                <div class="markdown-header">
-                    <h2 class="title" ng-bind="vm.stash.title || '[ untitled stash ]'"></h2>
-                    <div class="tag-cloud">
-                        <span ng-repeat="tag in vm.stash.tags"><span class="label label-primary" ng-bind="::tag"></span> </span>
-                    </div>
-                </div>
-                <div class="markdown-content" ng-bind-html="::(vm.stash.content | markdown)"></div>
+    <div class="stash-editor">
+        <div class="stash-frame container">
+            <div class="editor-pane" ng-if="!vm.isActive('preview')">
+                <div class="editor" code-editor="vm.options" ng-model="vm.stash.content"></div>
             </div>
-        </div>
 
-        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 action-bar">
-            <button class="btn btn-sm btn-success pull-right" ng-click="vm.save()" ng-disabled="vm.saving">{{ vm.saving ? 'Saving...' : 'Save Stash' }}</button>
-            <button class="btn btn-sm btn-default pull-right" ng-click="vm.toggle('preview')">{{ vm.isActive('preview') ? 'Resume Editing' : 'Preview' }}</button>
+            <div class="preview-pane" ng-if="vm.isActive('preview')">
+                <div class="markdown">
+                    <div class="markdown-header">
+                        <h2 class="title" ng-bind="vm.stash.title || '[ untitled stash ]'"></h2>
+                        <div class="tag-cloud">
+                            <span ng-repeat="tag in vm.stash.tags"><span class="label label-primary" ng-bind="::tag"></span> </span>
+                        </div>
+                    </div>
+                    <div class="markdown-content" ng-bind-html="::(vm.stash.content | markdown)"></div>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn btn-sm btn-success pull-right" ng-click="vm.save()" ng-disabled="vm.saving" ng-bind="vm.saving ? 'Saving...' : 'Save Stash'"></button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="vm.toggle('preview')" ng-bind="vm.isActive('preview') ? 'Resume Editing' : 'Preview'"></button>
+            </div>
         </div>
     </div>
 </form>

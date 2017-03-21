@@ -63,7 +63,7 @@ module.exports = {
                 exclude: /node_modules/,
                 query: {
                     plugins: ['babel-plugin-transform-decorators-legacy'],
-                    presets: ['es2015']
+                    presets: [['es2015', { modules: false }]]
                 }
             }
         ]
