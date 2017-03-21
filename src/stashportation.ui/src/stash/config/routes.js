@@ -26,8 +26,20 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
             controller: 'ViewView',
             controllerAs: 'vm',
             templateUrl: require('../views/view.html')
-        });
-        
+        })
+        .state('search', {
+            abstract: true,
+            url: '/search'
+        })
+            .state('search.form', {
+                url: ''
+            })
+            .state('search.tag', {
+                url: '/tag/:tag'
+            })
+            .state('search.query', {
+                url: '?q'
+            });
 
     urlRouterProvider.otherwise('/new');
 }

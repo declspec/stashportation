@@ -7,7 +7,7 @@
                     <h2 class="title" ng-bind="::(vm.stash.title || '[ untitled stash ]')"></h2>
                     <div class="tag-cloud">
                         <span ng-repeat="tag in ::vm.stash.tags">
-                            <a href="#" class="label label-primary" ng-bind="::tag"></a>
+                            <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
                         </span>
                     </div>
                 </div>
