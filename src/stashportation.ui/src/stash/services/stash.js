@@ -41,6 +41,10 @@ export class StashService {
         ]);
     }
 
+    getAll() {
+        return this.promise.when(Object.keys(this.stashCache).map(key => this.stashCache[key]));
+    }
+
     $loadCache() {
         this.stashCache = JSON.parse(sessionStorage.getItem('stashportation::stashCache') || '{}');
     }
