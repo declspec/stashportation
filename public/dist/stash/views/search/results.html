@@ -1,26 +1,19 @@
-<form class="main-content">
-    <div class="container">
-        <h1 class="text-center">
-            Found <span ng-bind="::(vm.results.length | pluralize:'result')"></span>
-        </h1>
-
-        <div class="row">
-            <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
-                <div class="stash-summary" ng-repeat="stash in ::vm.results">
-                    <div class="pull-left">
-                        <h3><a href="#" ui-sref="view({id:stash.id})" ng-bind="::stash.title"></a></h3>
-                        <div class="tag-cloud">
-                            <span ng-repeat="tag in ::stash.tags">
-                                <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" ui-sref="edit({ id: stash.id })" class="btn btn-sm btn-success">Edit</a>
-                    </div>
-                    <div class="clearfix"></div>
+<div class="container">
+    <div class="text-center">
+        <h2>"<span ng-bind="::vm.searchTerm"></span>"</h2>
+        <p><span ng-bind="::vm.results.length"></span> matching <span ng-bind="::(vm.results.length | pluralize:'stash':'es')"></span> found.</p>
+        <p><a href="#" ui-sref="search.form">&#8592; back to search</a></p>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
+            <div class="stash-summary" ng-repeat="stash in ::vm.results">
+                <h4 class="summary-title"><a href="#" ui-sref="view({id:stash.id})" ng-bind="::stash.title"></a></h4>
+                <div class="tag-cloud">
+                    <span ng-repeat="tag in ::stash.tags">
+                        <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>

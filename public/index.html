@@ -19,7 +19,7 @@
     </head>
     
     <body ng-app="stash.app" ng-strict-di ng-cloak class="ng-cloak">
-        <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header pull-left">
                     <a href="/" class="navbar-brand navbar-content">Stashportation</a>
@@ -33,7 +33,10 @@
             </div>
         </div>
 
-        <div ui-view></div>
+        <div class="main-content">
+            <div ui-view></div>
+        </div>
+
         <div modal-dialog></div>
         
         <script src="/dist/vendor.js"></script>

@@ -9,9 +9,9 @@ const EDITOR_OPTIONS = {
     lineWrapping: false
 };
 
-@inject('$state', 'StashService')
+@inject('$state', 'StashService', 'ViewLoaderService')
 export class EditView {
-    constructor(state, stashService) {
+    constructor(state, stashService, viewLoaderService) {
         this.state = state;
         this.stashService = stashService;
 
@@ -21,9 +21,8 @@ export class EditView {
         if (!state.params.id || state.params.stash) 
             this.stash = state.params.stash || {};
         else {
-            this.stashService.get(state.params.id).then(stash => {
-                return stash ? (this.stash = stash) : state.go('new');
-            });
+            viewLoaderService.push(this.stashService.findById(state.params.id))
+                .then(stash => stash ? (this.stash = stash) : state.go('new'));
         }
     }
 

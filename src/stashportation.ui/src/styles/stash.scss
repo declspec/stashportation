@@ -11,11 +11,18 @@ body {
     height: 100%;
 }
 
-.stash-frame {
+.stash-frame-container {
     border-left: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;
     height: 100%;
     padding: 0;
+}
+
+.fixed-stash-container {
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    width: 100%;
 }
 
 .stash-editor {
@@ -116,5 +123,14 @@ body {
 }
 
 .stash-summary {
-    border-bottom: 1px solid #e8e8e8;
+    border-top: 1px solid #e8e8e8;
+    padding: 10px;
+
+    .summary-title {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        border-bottom: 1px solid #e8e8e8;
+    }
 }

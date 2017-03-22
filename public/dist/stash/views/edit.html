@@ -1,4 +1,4 @@
-<form name="form" novalidate class="main-content-fixed">
+<form name="form" novalidate class="fixed-stash-container">
     <div class="stash-metadata">
         <div class="container">
             <div class="row">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="stash-editor">
-        <div class="stash-frame container">
+        <div class="stash-frame-container container">
             <div class="editor-pane" ng-if="!vm.isActive('preview')">
                 <div class="editor" code-editor="vm.options" ng-model="vm.stash.content"></div>
             </div>

@@ -1,3 +1,39 @@
+ui-view, .ui-view, [ui-view] {
+  width: 100%;
+  height: 100px; }
+  ui-view > *, .ui-view > *, [ui-view] > * {
+    visibility: hidden; }
+  ui-view::before, .ui-view::before, [ui-view]::before {
+    content: "\A0";
+    height: 10px;
+    margin: 10px 0;
+    display: block;
+    opacity: 0;
+    border: 1px solid #ccc;
+    background-image: linear-gradient(-45deg, #E9E9E9 25%, transparent 25%, transparent 50%, #E9E9E9 50%, #E9E9E9 75%, transparent 75%, transparent);
+    background-size: 50px 50px;
+    animation: move 2s linear infinite, fadeIn 300ms ease-in-out 200ms forwards; }
+  ui-view.loaded, .ui-view.loaded, [ui-view].loaded {
+    height: initial;
+    height: auto;
+    width: initial;
+    width: auto; }
+    ui-view.loaded > *, .ui-view.loaded > *, [ui-view].loaded > * {
+      visibility: inherit; }
+    ui-view.loaded::before, .ui-view.loaded::before, [ui-view].loaded::before {
+      content: none; }
+
+@keyframes move {
+  0% {
+    background-position: 0 0; }
+  100% {
+    background-position: 50px 50px; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 body {
   overflow: hidden; }
 
@@ -6,11 +42,17 @@ body {
   overflow: auto;
   height: 100%; }
 
-.stash-frame {
+.stash-frame-container {
   border-left: 1px solid #e8e8e8;
   border-right: 1px solid #e8e8e8;
   height: 100%;
   padding: 0; }
+
+.fixed-stash-container {
+  position: absolute;
+  top: 51px;
+  bottom: 0;
+  width: 100%; }
 
 .stash-editor {
   width: 100%;
@@ -89,7 +131,12 @@ body {
     color: inherit; }
 
 .stash-summary {
-  border-bottom: 1px solid #e8e8e8; }
+  border-top: 1px solid #e8e8e8;
+  padding: 10px; }
+  .stash-summary .summary-title {
+    margin-top: 0; }
+  .stash-summary:last-child {
+    border-bottom: 1px solid #e8e8e8; }
 .borderless-input {
   border: 0;
   outline: 0; }

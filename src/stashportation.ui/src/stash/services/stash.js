@@ -1,10 +1,13 @@
 import { inject } from 'core';
 
-@inject('$q', 'WebApiService')
+const REQUEST_LATENCY = 1000;
+
+@inject('$q', '$timeout', 'WebApiService')
 export class StashService {
-    constructor(q, webApiService) {
+    constructor(q, delay, webApiService) {
         this.promise = q;
         this.webApi = webApiService;
+        this.delay = delay;
 
         this.$loadCache();
         this.$$id = Object.keys(this.stashCache).reduce((maxId, id) => Math.max(maxId, id), 0);
@@ -27,8 +30,22 @@ export class StashService {
         return this.promise.when();
     }
 
-    get(id) {
-        return this.promise.when(this.stashCache[id] || null);
+    findById(id) {
+        return this.delay(() => this.stashCache[id] || null, REQUEST_LATENCY);
+    }
+
+    findByQuery(query) {
+        const lowerQuery = query.toLowerCase();
+        return this.delay(() => Object.values(this.stashCache).filter(s => s.title.toLowerCase().indexOf(lowerQuery) >= 0), REQUEST_LATENCY);
+    }
+
+    findByTag(tag) {
+        const lowerTag = tag.toLowerCase();
+        return this.delay(() => Object.values(this.stashCache).filter(s => s.tags.indexOf(lowerTag) >= 0), REQUEST_LATENCY);
+    }
+
+    findAll() {
+        return this.delay(() => Object.values(this.stashCache), REQUEST_LATENCY);
     }
 
     getAllTags() {
@@ -39,10 +56,6 @@ export class StashService {
             "node.js","regex","xml","asp.net-mvc","linux","swift","django","wpf",
             "database","excel"
         ]);
-    }
-
-    getAll() {
-        return this.promise.when(Object.keys(this.stashCache).map(key => this.stashCache[key]));
     }
 
     $loadCache() {

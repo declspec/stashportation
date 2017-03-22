@@ -38,19 +38,20 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
         .state('search.query', {
             url: '/?q',
             templateUrl: require('../views/search/results.html'),
-            controller: ['StashService', function(s) { s.getAll().then(res => this.results = res) } ],
+            controller: 'SearchQueryView',
             controllerAs: 'vm'
         })
         .state('search.tag', {
             url: '/tag/:tag',
             templateUrl: require('../views/search/results.html'),
-            controller: ['StashService', function(s) { s.getAll().then(res => this.results = res) } ],
+            controller: 'SearchTagView',
             controllerAs: 'vm'
         })
         .state('search.form', {
             url: '',
-            controller: ['$scope', 'StashService', ($scope, stashService) => stashService.getAllTags().then(tags => $scope.tags = tags) ],
-            templateUrl: require('../views/search/form.html')
+            templateUrl: require('../views/search/form.html'),
+            controller: ['StashService', function(stashService) { stashService.getAllTags().then(tags => this.tags = tags) } ],
+            controllerAs: 'vm'
         })
             
             
