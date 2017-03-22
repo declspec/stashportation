@@ -50,7 +50,10 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
         .state('search.form', {
             url: '',
             templateUrl: require('../views/search/form.html'),
-            controller: ['StashService', function(stashService) { stashService.getAllTags().then(tags => this.tags = tags) } ],
+            controller: ['StashService', function(stashService) { 
+                stashService.findAllTags()
+                    .then(tags => this.tags = tags) } 
+            ],
             controllerAs: 'vm'
         })
             

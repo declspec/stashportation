@@ -23,7 +23,7 @@ configure(process.env.NODE_ENV).then(app => {
 
     // GET get all tags
     app.get('/api/tags', (req, res, next) => {
-        tagsService.findAll().then(tags => {
+        tagService.findAll().then(tags => {
             res.sendWrapped(createSuccessResponse(200, tags));
         }, next);
     });

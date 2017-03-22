@@ -1486,7 +1486,7 @@ function RouteConfig(stateProvider, urlRouterProvider, locationProvider, urlMatc
         controller: ['StashService', function (stashService) {
             var _this = this;
 
-            stashService.getAllTags().then(function (tags) {
+            stashService.findAllTags().then(function (tags) {
                 return _this.tags = tags;
             });
         }],
@@ -1657,20 +1657,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var REQUEST_LATENCY = 1000;
-
-var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__["a" /* inject */])('$q', '$timeout', 'WebApiService'), _dec(_class = function () {
-    function StashService(q, delay, webApiService) {
+var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__["a" /* inject */])('WebApiService'), _dec(_class = function () {
+    function StashService(webApiService) {
         _classCallCheck(this, StashService);
 
-        this.promise = q;
         this.webApi = webApiService;
-        this.delay = delay;
-
-        this.$loadCache();
-        this.$$id = Object.keys(this.stashCache).reduce(function (maxId, id) {
-            return Math.max(maxId, id);
-        }, 0);
     }
 
     _createClass(StashService, [{
@@ -1679,80 +1670,39 @@ var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_cor
             return this.webApi.post('/api/stash', stash).then(function (res) {
                 return res.data;
             });
-
-            stash.id = ++this.$$id;
-
-            this.stashCache[stash.id] = stash;
-            this.$saveCache();
-
-            return this.promise.when(stash.id);
         }
     }, {
         key: 'save',
         value: function save(stash) {
             return this.webApi.put('/api/stash/' + stash.id, stash);
-
-            if (this.stashCache[stash.id] !== stash) this.stashCache[stash.id] = stash;
-
-            this.$saveCache();
-            return this.promise.when();
         }
     }, {
         key: 'findById',
         value: function findById(id) {
-            var _this = this;
-
-            return this.delay(function () {
-                return _this.stashCache[id] || null;
-            }, REQUEST_LATENCY);
+            return this.webApi.get('/api/stash/' + encodeURIComponent(id)).then(function (res) {
+                return res.status === 200 ? res.data : null;
+            });
         }
     }, {
         key: 'findByQuery',
         value: function findByQuery(query) {
-            var _this2 = this;
-
-            var lowerQuery = query.toLowerCase();
-            return this.delay(function () {
-                return Object.values(_this2.stashCache).filter(function (s) {
-                    return s.title.toLowerCase().indexOf(lowerQuery) >= 0;
-                });
-            }, REQUEST_LATENCY);
+            return this.webApi.get('/api/stash?q=' + encodeURIComponent(query)).then(function (res) {
+                return res.data;
+            });
         }
     }, {
         key: 'findByTag',
         value: function findByTag(tag) {
-            var _this3 = this;
-
-            var lowerTag = tag.toLowerCase();
-            return this.delay(function () {
-                return Object.values(_this3.stashCache).filter(function (s) {
-                    return s.tags.indexOf(lowerTag) >= 0;
-                });
-            }, REQUEST_LATENCY);
+            return this.webApi.get('/api/stash/tags/' + encodeURIComponent(tag.toLowerCase())).then(function (res) {
+                return res.data;
+            });
         }
     }, {
-        key: 'findAll',
-        value: function findAll() {
-            var _this4 = this;
-
-            return this.delay(function () {
-                return Object.values(_this4.stashCache);
-            }, REQUEST_LATENCY);
-        }
-    }, {
-        key: 'getAllTags',
-        value: function getAllTags() {
-            return this.promise.when(["javascript", "java", "c#", "php", "android", "jquery", "python", "html", "c++", "ios", "css", "mysql", "sql", "asp.net", "objective-c", "ruby-on-rails", ".net", "c", "angularjs", "arrays", "iphone", "sql-server", "json", "ruby", "r", "ajax", "node.js", "regex", "xml", "asp.net-mvc", "linux", "swift", "django", "wpf", "database", "excel"]);
-        }
-    }, {
-        key: '$loadCache',
-        value: function $loadCache() {
-            this.stashCache = JSON.parse(sessionStorage.getItem('stashportation::stashCache') || '{}');
-        }
-    }, {
-        key: '$saveCache',
-        value: function $saveCache() {
-            sessionStorage.setItem('stashportation::stashCache', JSON.stringify(this.stashCache));
+        key: 'findAllTags',
+        value: function findAllTags() {
+            return this.webApi.get('/api/tags').then(function (res) {
+                return res.data;
+            });
         }
     }]);
 
