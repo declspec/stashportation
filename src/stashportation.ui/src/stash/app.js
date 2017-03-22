@@ -18,6 +18,8 @@ import { TagEditorDirective } from './directives/tag-editor';
 // Views
 import { EditView } from './views/edit';
 import { ViewView } from './views/view';
+import { SearchQueryView } from './views/search/query';
+import { SearchTagView } from './views/search/tag';
 
 // Services
 import { StashService } from './services/stash';
@@ -27,6 +29,8 @@ const app = angular.module('stash.app', [ uiRouter, core, coreUi, ngModalDialog 
 
     .controller('EditView', EditView)
     .controller('ViewView', ViewView)
+    .controller('SearchQueryView', SearchQueryView)
+    .controller('SearchTagView', SearchTagView)
 
     .filter('markdown', MarkdownFilterProvider)
     .directive('codeEditor', directive(CodeEditorDirective))

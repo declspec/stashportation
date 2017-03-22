@@ -1,4 +1,4 @@
-<form class="main-content">
+<form novalidate>
     <div class="container text-center">
         <h1>Search Stashes</h1>
         <p>Quickly find a stash by its title.</p>
@@ -20,7 +20,7 @@
                 <div class="content">
                     <p>Alternatively, pick a tag to find all stashes marked with that tag.</p>
                     <div class="tag-cloud">
-                        <span ng-repeat="tag in ::tags">
+                        <span ng-repeat="tag in ::vm.tags">
                             <a href="#" ui-sref="search.tag({tag: tag})" class="label label-primary" ng-bind="::tag"></a>
                         </span>
                     </div>
