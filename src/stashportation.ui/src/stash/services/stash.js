@@ -14,6 +14,9 @@ export class StashService {
     }
 
     create(stash) {
+        return this.webApi.post('/api/stash', stash).then(res => res.data);
+
+
         stash.id = ++this.$$id;
 
         this.stashCache[stash.id] = stash;
@@ -23,6 +26,8 @@ export class StashService {
     }
 
     save(stash) {
+        return this.webApi.put(`/api/stash/${stash.id}`, stash);
+
         if (this.stashCache[stash.id] !== stash)
             this.stashCache[stash.id] = stash;
             

@@ -1676,6 +1676,10 @@ var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_cor
     _createClass(StashService, [{
         key: 'create',
         value: function create(stash) {
+            return this.webApi.post('/api/stash', stash).then(function (res) {
+                return res.data;
+            });
+
             stash.id = ++this.$$id;
 
             this.stashCache[stash.id] = stash;
@@ -1686,6 +1690,8 @@ var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_cor
     }, {
         key: 'save',
         value: function save(stash) {
+            return this.webApi.put('/api/stash/' + stash.id, stash);
+
             if (this.stashCache[stash.id] !== stash) this.stashCache[stash.id] = stash;
 
             this.$saveCache();
