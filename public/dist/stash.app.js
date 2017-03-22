@@ -1412,6 +1412,10 @@ var lib = __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('core-ui.lib', 
     return sce.trustAsHtml;
 }]).filter('urlsafe', function () {
     return encodeURIComponent;
+}).filter('negate', function () {
+    return function (o) {
+        return typeof o === 'undefined' ? undefined : !o;
+    };
 }).directive('uiView', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__directive__["a" /* directive */])(__WEBPACK_IMPORTED_MODULE_4__view_loader__["b" /* ViewLoaderDirective */]));
 
 /* harmony default export */ __webpack_exports__["a"] = lib.name;

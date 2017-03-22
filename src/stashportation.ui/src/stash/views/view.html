@@ -14,7 +14,7 @@
                 <div class="markdown-content" ng-bind-html="::(vm.stash.content | markdown)"></div>
             </div>
 
-            <div ng-if="::!vm.stash">
+            <div ng-if="::(vm.stash | negate)">
                 <h1 class="text-center">Oops, this stash may have been removed</h1>
             </div>
         </div>

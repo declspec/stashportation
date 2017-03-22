@@ -13,6 +13,7 @@ const lib = angular.module('core-ui.lib', [])
     .filter('pluralize', () => PluralizeFilter)
     .filter('raw', [ '$sce', (sce) => sce.trustAsHtml ])
     .filter('urlsafe', () => encodeURIComponent)
+    .filter('negate', () => ((o) => typeof(o) === 'undefined' ? undefined : !o))
 
     .directive('uiView', directive(ViewLoaderDirective));
 
