@@ -5,8 +5,8 @@ namespace Stashportation.Config {
         public static void ConfigureMvc(this IServiceCollection services) {
             var builder = services.AddMvcCore();
 
-            builder.AddMvcOptions(opts => {
-                var jsonFormatter = new Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter()
+            builder.AddJsonFormatters(settings => {
+                settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
         }
     }
