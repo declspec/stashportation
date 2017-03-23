@@ -1,7 +1,9 @@
 node_modules/
 bin/
+.vs/
+obj/
+*.user
 *.log
 *.exe
 *.bin
 *.obj
-
