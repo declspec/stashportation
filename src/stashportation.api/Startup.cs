@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Stashportation.Config;
+using Stashportation.Database.Repositories;
+using Stashportation.Services;
 
 namespace Stashportation {
     public class Startup {
@@ -20,6 +22,12 @@ namespace Stashportation {
 
         public void ConfigureServices(IServiceCollection services) {
             services.ConfigureDatabase(Configuration);
+
+            services.AddSingleton<ITagRepository, TagRepository>();
+            services.AddSingleton<IStashRepository, StashRepository>();
+
+            services.AddSingleton<IStashService, StashService>();
+
             services.ConfigureMvc();
         }
 
@@ -28,10 +36,8 @@ namespace Stashportation {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
-            app.UseMvc();
+            app.UseMvc(routes => {
 
-            app.Run(async (context) => {
-                await context.Response.WriteAsync("Hello World!");
             });
         }
     }

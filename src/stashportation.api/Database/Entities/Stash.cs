@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Stashportation.Database.Entities
-{
+namespace Stashportation.Database.Entities {
     public class StashEntity
     {
         public long Id { get; set; }
