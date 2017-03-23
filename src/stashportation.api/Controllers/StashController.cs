@@ -42,5 +42,11 @@ namespace Stashportation.Controllers {
             var stashes = await _stashService.FindSummariesByTag(tag);
             return Response.Ok(stashes);
         }
+
+        [HttpGet("")]
+        public async Task<IActionResult> FindSummariesByQuery([FromQuery] string q) {
+            var stashes = await _stashService.FindSummariesByQuery(q);
+            return Response.Ok(stashes);
+        }
     }
 }
