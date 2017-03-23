@@ -34,6 +34,7 @@ namespace Stashportation.Database.Repositories {
                 });
 
                 await Task.WhenAll(inserts.ToArray());
+                transaction.Commit();
             }
         }
 
@@ -45,7 +46,7 @@ namespace Stashportation.Database.Repositories {
         }
 
         private static string GetInsertTagQuery() {
-            return $"INSERT OR IGNORE INTO {Tables.Tags} (tag, date_created) VALUES(:Tag, :DateCreated)";
+            return $"INSERT OR IGNORE INTO {Tables.Tags} (name, date_created) VALUES (@Name, @DateCreated)";
         }
 
         private static string GetSelectTagsQuery() {
