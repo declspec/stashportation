@@ -43,18 +43,15 @@ namespace Stashportation.Database {
             var migrationType = typeof(IMigration);
             var completed = new Stack<MigrationOperation>();
 
-            var migrations = _migrationAssembly.GetTypes()
-                .Where(migrationType.IsAssignableFrom)
-                .Select(t => new { Type = t, Attribute = t.GetTypeInfo().GetCustomAttribute<MigrationAttribute>() })
-                .Where(a => a.Attribute != null && a.Attribute.Version > from && a.Attribute.Version < version)
-                .OrderBy(a => a.Attribute.Version);
+            var operations = _migrationAssembly.GetTypes()
+                .Where(t => migrationType.IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null)
+                .Select(CreateMigrationOperation)
+                .Where(op => op.Version > from && op.Version < version)
+                .OrderBy(op => op.Version);
 
             try {
-                foreach (var m in migrations) {
-                    var migration = (IMigration)Activator.CreateInstance(m.Type);
-                    var operation = new MigrationOperation(migration, m.Attribute.Version, m.Attribute.Title ?? m.Type.Name);
-
-                    migration.Up(_connection);
+                foreach (var operation in operations) {
+                    operation.Migration.Up(_connection);
                     completed.Push(operation);
                     _connection.Execute("INSERT INTO version_info(version,title,date_created) VALUES(@version,@title,current_timestamp)", new { version = operation.Version, title = operation.Title });
                 }
@@ -72,18 +69,15 @@ namespace Stashportation.Database {
 
             var todo = _connection.Query<long>("SELECT version FROM version_info WHERE version > @Version", new { Version = version });
 
-            var migrations = _migrationAssembly.GetTypes()
-                .Where(migrationType.IsAssignableFrom)
-                .Select(t => new { Type = t, Attribute = t.GetTypeInfo().GetCustomAttribute<MigrationAttribute>() })
-                .Where(a => a.Attribute != null && todo.Contains(a.Attribute.Version))
-                .OrderByDescending(a => a.Attribute.Version);
+            var operations = _migrationAssembly.GetTypes()
+                .Where(t => migrationType.IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null)
+                .Select(CreateMigrationOperation)
+                .Where(op => todo.Contains(op.Version))
+                .OrderByDescending(op => op.Version);
 
             try {
-                foreach (var m in migrations) {
-                    var migration = (IMigration)Activator.CreateInstance(m.Type);
-                    var operation = new MigrationOperation(migration, m.Attribute.Version, m.Attribute.Title ?? m.Type.Name);
-
-                    migration.Down(_connection);
+                foreach (var operation in operations) {
+                    operation.Migration.Down(_connection);
                     completed.Push(operation);
                     _connection.Execute("DELETE FROM version_info WHERE version = @Version", new { Version = operation.Version });
                 }
@@ -117,6 +111,11 @@ namespace Stashportation.Database {
                 current.Migration.Up(_connection);
                 _connection.Execute("INSERT INTO version_info(version,title,date_created) VALUES(@version,@title,current_timestamp)", new { version = current.Version, title = current.Title });
             }
+        }
+
+        private static MigrationOperation CreateMigrationOperation(Type type) {
+            var migration = (IMigration)Activator.CreateInstance(type);
+            return new MigrationOperation(migration, migration.Version, type.Name);
         }
 
         private class MigrationOperation {

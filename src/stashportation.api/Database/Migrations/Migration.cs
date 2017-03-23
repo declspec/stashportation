@@ -1,23 +1,8 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 
 namespace Stashportation.Database.Migrations {
-
-    [AttributeUsage(AttributeTargets.Class)]
-    public class MigrationAttribute : Attribute {
-        public long Version { get; }
-        public string Title { get; }
-
-        public MigrationAttribute(long version)
-            : this(version, null) { }
-
-        public MigrationAttribute(long version, string title) {
-            Version = version;
-            Title = title;
-        }
-    }
-
     public interface IMigration {
+        long Version { get; }
         void Up(IDbConnection connection);
         void Down(IDbConnection connection);
     }
