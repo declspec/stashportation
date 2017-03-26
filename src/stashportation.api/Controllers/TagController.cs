@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Stashportation.Database.Repositories;
+using Stashportation.Filters;
 using Stashportation.Utils;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stashportation.Controllers {
     [Route("api/tags")]
+    [ServiceFilter(typeof(ApiExceptionFilter))]
     public class TagController : ControllerBase {
         private readonly ITagRepository _tagRepository;
 
