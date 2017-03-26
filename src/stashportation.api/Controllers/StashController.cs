@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stashportation.Filters;
 using Stashportation.Models;
 using Stashportation.Services;
 using Stashportation.Utils;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Stashportation.Controllers {
     [Route("api/stash")]
+    [ServiceFilter(typeof(ApiExceptionFilter))]
     public class StashController : ControllerBase {
         private readonly IStashService _stashService;
 

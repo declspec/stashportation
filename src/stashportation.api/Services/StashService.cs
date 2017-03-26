@@ -1,6 +1,7 @@
 ﻿using Stashportation.Database.Repositories;
 using Stashportation.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Stashportation.Services {
@@ -44,8 +45,11 @@ namespace Stashportation.Services {
             if (stash.Tags == null || stash.Tags.Count == 0)
                 return Task.CompletedTask;
 
-            for (var i = 0; i < stash.Tags.Count; i++)
-                stash.Tags[i] = stash.Tags[i].ToLower();
+            stash.Tags = stash.Tags
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+                .Select(t => t.ToLower())
+                .Distinct()
+                .ToList();
 
             return _tagRepository.CreateAll(stash.Tags);
         }
