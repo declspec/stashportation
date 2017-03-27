@@ -19,7 +19,7 @@ namespace Stashportation.Database.Migrations {
 
             connection.Execute(@"CREATE TABLE tags (
                 id              INTEGER PRIMARY KEY,
-                name             TEXT NOT NULL UNIQUE,
+                name            TEXT NOT NULL UNIQUE,
                 date_created    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )");
 

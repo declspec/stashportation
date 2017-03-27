@@ -26,6 +26,9 @@ namespace Stashportation.Controllers {
 
         [HttpPut("{id:long}")]
         public async Task<IActionResult> Update(long id, [FromBody] Stash model) {
+            if (!ModelState.IsValid)
+                return Response.ValidationError(ModelState.GetAllErrors());
+
             if (model.Id != id)
                 return Response.BadRequest("Invalid request");
 
