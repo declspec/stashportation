@@ -1,5 +1,6 @@
 import { inject } from 'core';
 
+import 'codemirror/mode/gfm/gfm';
 import 'styles/form.scss';
 
 const EDITOR_OPTIONS = {
@@ -47,6 +48,13 @@ export class EditView {
             });
         }
 
-        return promise.finally(() => this.saving = false);
+        return promise.finally(() => {
+            this.stash.tags = this.stash.tags.filter(unique);
+            this.saving = false
+        });
     }
+}
+
+function unique(value, index, array) {
+    return array.indexOf(value) === index;
 }
