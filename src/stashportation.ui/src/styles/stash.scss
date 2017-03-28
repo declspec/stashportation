@@ -89,6 +89,14 @@ body {
     }
 }
 
+.title-text {
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    color: #a0aabf;
+    font-weight: 500;
+    font-size: 11px;
+}
+
 .stash-metadata {
     border-bottom: 1px solid #E8E8E8;
     // border-top: 1px solid black;
@@ -101,14 +109,6 @@ body {
         width: 100%;
     }
 
-    .title-text {
-        text-transform: uppercase;
-        margin: 0 0 4px 0;
-        color: #a0aabf;
-        font-weight: 500;
-        font-size: 11px;
-    }
-    
     .col {
         height: 100%;
         padding: 15px;

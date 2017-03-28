@@ -11,10 +11,7 @@ const environment = (process.env.NODE_ENV || 'development').toLowerCase();
 const extractCss = new ExtractTextPlugin({ filename: '[name].css', allChunks: true });
 
 const plugins = [
-    new webpack.optimize.CommonsChunkPlugin({ 
-        name: 'vendor', 
-        chunks: ['vendor']
-    }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js', minChunks: Infinity }),
     extractCss
 ];
 
@@ -31,7 +28,7 @@ module.exports = {
 
     output: {
         path: DEST_PATH,
-        publicPath: `/dist/${pkg.version}`,
+        publicPath: `/dist/${pkg.version}/`,
         filename: '[name].js'
     },
 

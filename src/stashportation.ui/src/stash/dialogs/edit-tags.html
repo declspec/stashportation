@@ -1,0 +1,10 @@
+<div class="dialog-container-fluid">
+    <form class="col-md-4 col-sm-8 col-md-offset-4 col-sm-offset-2">
+        <h2 class="title-text">Tags</h2>
+        <div tag-editor ng-model="vm.stash.tags" ng-model-options="{ debounce: 300 }"></div>
+        <div class="action-bar">
+            <button class="btn btn-sm btn-danger pull-left" ng-click="vm.cancel()">Cancel</button>
+            <button class="btn btn-sm btn-success pull-right" ng-click="vm.confirm()">Save</button>
+        </div>
+    </form>
+</div>

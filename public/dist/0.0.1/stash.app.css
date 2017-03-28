@@ -107,6 +107,13 @@ body {
   .markdown .markdown-content > *:first-child {
     margin-top: 0 !important; }
 
+.title-text {
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+  color: #a0aabf;
+  font-weight: 500;
+  font-size: 11px; }
+
 .stash-metadata {
   border-bottom: 1px solid #E8E8E8;
   height: 70px; }
@@ -115,12 +122,6 @@ body {
     font-size: 17.5px;
     font-family: Pragmata, Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace;
     width: 100%; }
-  .stash-metadata .title-text {
-    text-transform: uppercase;
-    margin: 0 0 4px 0;
-    color: #a0aabf;
-    font-weight: 500;
-    font-size: 11px; }
   .stash-metadata .col {
     height: 100%;
     padding: 15px; }

@@ -1,0 +1,48 @@
+[modal-dialog], .modal-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    overflow: auto;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAMFBMVEX///8HBwcICAgUFBQXFxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuanbkAAAAQUlEQVR4nOzOoQ0AIBDF0K5QNiC3wYUN2H8nJPkai6l5prSOdcPU2jckN8mTZEmWZEmW5EFy8f+e/g4AAAD//wMAKnM4yCLdBHkAAAAASUVORK5CYII=') repeat 0 0;
+        opacity: 0.8;
+        z-index: -1;
+    }
+
+    &::before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .dialog-container, .dialog-container-fluid {
+        margin: 20px 0;
+        display: inline-block;
+        vertical-align: middle;
+ 
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+
+        & > *:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .dialog-container-fluid {
+        width: 100%;
+    }
+}
