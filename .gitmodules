@@ -1,3 +1,0 @@
-[submodule "src/stashportation.ui/lib/ng-modal-dialog"]
-	path = src/stashportation.ui/lib/ng-modal-dialog
-	url = https://github.com/declspec/ng-modal-dialog.git

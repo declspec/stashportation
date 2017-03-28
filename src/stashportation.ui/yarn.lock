@@ -2006,6 +2006,10 @@ nan@^2.3.0, nan@^2.3.2:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
 
+ng-modal-dialog@^0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ng-modal-dialog/-/ng-modal-dialog-0.1.2.tgz#e75d3e442acbf9201a4ca06347f7b125fa71f1af"
+
 node-gyp@^3.3.1:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.6.0.tgz#7474f63a3a0501161dda0b6341f022f14c423fa6"

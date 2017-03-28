@@ -1,6 +1,6 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import ngModalDialog from 'lib/ng-modal-dialog';
+import ngModalDialog from 'ng-modal-dialog';
 import coreUi from 'core-ui/lib';
 import core from 'core/lib';
 
