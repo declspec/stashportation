@@ -37,6 +37,9 @@ ui-view, .ui-view, [ui-view] {
 body {
   overflow: hidden; }
 
+[ng-cloak], .ng-cloak {
+  display: none; }
+
 .preview-pane {
   padding: 15px;
   overflow: auto;
@@ -551,6 +554,9 @@ span.CodeMirror-selectedtext { background: none; }
 .borderless-input {
   border: 0;
   outline: 0; }
+
+.form-error {
+  color: red; }
 
 .input-box {
   padding: 0;

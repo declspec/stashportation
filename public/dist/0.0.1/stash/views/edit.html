@@ -34,6 +34,7 @@
             </div>
 
             <div class="action-bar">
+                <span class="form-error" ng-show="vm.error" ng-bind="vm.error"></span>
                 <button class="btn btn-sm btn-success pull-right" ng-click="vm.save()" ng-disabled="vm.saving" ng-bind="vm.saving ? 'Saving...' : 'Save Stash'"></button>
                 <button class="btn btn-sm btn-default pull-right" ng-click="vm.toggle('preview')" ng-bind="vm.isActive('preview') ? 'Resume Editing' : 'Preview'"></button>
             </div>

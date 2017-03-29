@@ -7,7 +7,7 @@ export class StashService {
     }
 
     create(stash) {
-        return this.webApi.post('/api/stash', stash).then(res => res.data);
+        return this.webApi.post('/api/stash', stash);
     }
 
     save(stash) {

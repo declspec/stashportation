@@ -5,6 +5,10 @@ body {
     overflow: hidden;   
 }
 
+[ng-cloak], .ng-cloak {
+    display: none;
+}
+
 .preview-pane {
     padding: 15px;   
     overflow: auto;

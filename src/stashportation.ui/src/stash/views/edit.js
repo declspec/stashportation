@@ -46,18 +46,25 @@ export class EditView {
 
     save() {
         this.saving = true;
-        let promise = null;
+        this.error = null;
 
-        if (this.stash.id)
-            promise = this.stashService.save(this.stash);
-        else {
-            promise = this.stashService.create(this.stash).then(id => {
-                this.stash.id = id;
-                this.state.go('edit', { id: id, stash: this.stash });
-            });
-        }
+        let currentId = this.stash.id;
 
-        return promise.finally(() => this.saving = false);
+        const promise = currentId 
+            ? this.stashService.save(this.stash) 
+            : this.stashService.create(this.stash);
+
+        return promise.then(res => {
+            if (res.status === 422) {
+                this.error = res.errors[0] || "An unknown error occurred when saving. Please try again.";
+                return;
+            }
+
+            if (!currentId) {
+                this.stash.id = res.data;
+                this.state.go('edit', { id: this.stash.id, stash: this.stash });
+            }
+        }).finally(() => this.saving = false);
     }
 }
 
