@@ -80,18 +80,14 @@ body {
         }
     }
 
-    .markdown-content {
+    .markdown-body {
         color: #333;
         font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif !important;
         padding: 10px;
-        
-        pre { color: inherit !important; }
-        img { max-width: 100%; } 
-        h1, h2, h3, h4, h5, h6 { font-weight: bold; }
-        
-        >*:first-child { margin-top: 0 !important; }
     }
 }
+
+
 
 .title-text {
     text-transform: uppercase;

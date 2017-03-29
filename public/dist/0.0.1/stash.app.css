@@ -97,18 +97,10 @@ body {
     top: 5px;
     right: 0px; }
 
-.markdown .markdown-content {
+.markdown .markdown-body {
   color: #333;
   font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,sans-serif !important;
   padding: 10px; }
-  .markdown .markdown-content pre {
-    color: inherit !important; }
-  .markdown .markdown-content img {
-    max-width: 100%; }
-  .markdown .markdown-content h1, .markdown .markdown-content h2, .markdown .markdown-content h3, .markdown .markdown-content h4, .markdown .markdown-content h5, .markdown .markdown-content h6 {
-    font-weight: bold; }
-  .markdown .markdown-content > *:first-child {
-    margin-top: 0 !important; }
 
 .title-text {
   text-transform: uppercase;
