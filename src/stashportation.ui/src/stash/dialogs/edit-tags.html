@@ -4,7 +4,7 @@
             <form class="dialog">
                 <h2 class="title-text">Tags</h2>
                 <div class="form-group">
-                    <div tag-editor ng-model="tags" ng-model-options="{ debounce: 300 }"></div>
+                    <input class="input-box borderless-input" type="text" ng-model="tags" ng-model-options="{ debounce: 200 }" tag-editor />
                 </div>
                 <div class="form-actions">
                     <button class="btn btn-sm btn-danger pull-left" ng-click="cancel()">Cancel</button>

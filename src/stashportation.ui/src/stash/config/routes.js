@@ -15,7 +15,7 @@ export function RouteConfig(stateProvider, urlRouterProvider, locationProvider, 
         })
         .state('edit', {
             url: '/edit/:id',
-            params: { id: { value: null, type: 'int' }, stash: null },
+            params: { id: { type: 'int' }, stash: null },
             controller: 'EditView',
             controllerAs: 'vm',
             templateUrl: require('../views/edit.html')

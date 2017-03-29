@@ -57,10 +57,7 @@ export class EditView {
             });
         }
 
-        return promise.finally(() => {
-            this.stash.tags = this.stash.tags.filter(unique);
-            this.saving = false
-        });
+        return promise.finally(() => this.saving = false);
     }
 }
 

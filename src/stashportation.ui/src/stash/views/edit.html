@@ -8,7 +8,7 @@
                 </div>
                 <div class="col col-sm-7 col-md-6 col-xs-2">
                     <h2 class="title-text">Tags <span class="visible-xs-inline" ng-bind="'('+(vm.stash.tags.length||0)+')'"></span></h2>
-                    <div class="hidden-xs" tag-editor ng-model="vm.stash.tags" ng-model-options="{ debounce: 300 }"></div>
+                    <input class="input-box borderless-input hidden-xs" type="text" ng-model="vm.stash.tags" ng-model-options="{ debounce: 300 }" tag-editor />
                     <a href="#" class="glyphicon visible-xs-inline-block glyphicon-tag inline-tag" title="Tag" ng-click="vm.showTagPrompt()"></a>
                 </div>
             </div>
