@@ -126,8 +126,7 @@ body {
     height: 100%;
     padding: 15px; }
   .stash-metadata .inline-tag {
-    padding: 5px 0;
-    text-align: center;
+    padding: 5px;
     width: 100%;
     color: inherit; }
 
@@ -138,6 +137,45 @@ body {
     margin-top: 0; }
   .stash-summary:last-child {
     border-bottom: 1px solid #e8e8e8; }
+[modal-dialog], .modal-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  overflow: auto; }
+  [modal-dialog]::after, .modal-dialog::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAMFBMVEX///8HBwcICAgUFBQXFxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABuanbkAAAAQUlEQVR4nOzOoQ0AIBDF0K5QNiC3wYUN2H8nJPkai6l5prSOdcPU2jckN8mTZEmWZEmW5EFy8f+e/g4AAAD//wMAKnM4yCLdBHkAAAAASUVORK5CYII=") repeat 0 0;
+    opacity: 0.8;
+    z-index: -1; }
+  [modal-dialog]::before, .modal-dialog::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; }
+  [modal-dialog] .dialog-container, [modal-dialog] .dialog-container-fluid, .modal-dialog .dialog-container, .modal-dialog .dialog-container-fluid {
+    margin: 20px 0;
+    display: inline-block;
+    vertical-align: middle; }
+    [modal-dialog] .dialog-container > *:last-child, [modal-dialog] .dialog-container-fluid > *:last-child, .modal-dialog .dialog-container > *:last-child, .modal-dialog .dialog-container-fluid > *:last-child {
+      margin-bottom: 0; }
+    [modal-dialog] .dialog-container > *:first-child, [modal-dialog] .dialog-container-fluid > *:first-child, .modal-dialog .dialog-container > *:first-child, .modal-dialog .dialog-container-fluid > *:first-child {
+      margin-top: 0; }
+  [modal-dialog] .dialog, .modal-dialog .dialog {
+    padding: 15px;
+    background-color: #fff;
+    margin: 15px; }
+  [modal-dialog] .dialog-container-fluid, .modal-dialog .dialog-container-fluid {
+    width: 100%; }
 /* BASICS */
 
 .CodeMirror {
@@ -518,3 +556,8 @@ span.CodeMirror-selectedtext { background: none; }
 .borderless-input {
   border: 0;
   outline: 0; }
+
+.form-actions::after {
+  clear: both;
+  content: '';
+  display: table; }

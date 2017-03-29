@@ -10597,7 +10597,7 @@ module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directive__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filters_cut__ = __webpack_require__(40);
@@ -10931,16 +10931,18 @@ var StashService = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_cor
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_codemirror_mode_gfm_gfm__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_codemirror_mode_gfm_gfm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_codemirror_mode_gfm_gfm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styles_form_scss__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styles_form_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_styles_form_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_modal_dialog__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_codemirror_mode_gfm_gfm__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_codemirror_mode_gfm_gfm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_codemirror_mode_gfm_gfm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_styles_form_scss__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_styles_form_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_styles_form_scss__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditView; });
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -10954,13 +10956,14 @@ var EDITOR_OPTIONS = {
     lineWrapping: false
 };
 
-var EditView = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__["a" /* inject */])('$state', 'StashService', 'ViewLoaderService'), _dec(_class = function () {
-    function EditView(state, stashService, viewLoaderService) {
+var EditView = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__["a" /* inject */])('$state', '$modalDialog', 'StashService', 'ViewLoaderService'), _dec(_class = function () {
+    function EditView(state, modalDialog, stashService, viewLoaderService) {
         var _this = this;
 
         _classCallCheck(this, EditView);
 
         this.state = state;
+        this.modalDialog = modalDialog;
         this.stashService = stashService;
 
         this.options = EDITOR_OPTIONS;
@@ -10984,23 +10987,32 @@ var EditView = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__[
             return !!this.settings[setting];
         }
     }, {
+        key: 'showTagPrompt',
+        value: function showTagPrompt() {
+            var _this2 = this;
+
+            this.modalDialog.show('edit-tags', { tags: this.stash.tags }, function (result, scope) {
+                if (result === __WEBPACK_IMPORTED_MODULE_1_ng_modal_dialog__["DialogResult"].Success) _this2.stash.tags = scope.tags;
+            });
+        }
+    }, {
         key: 'save',
         value: function save() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.saving = true;
             var promise = null;
 
             if (this.stash.id) promise = this.stashService.save(this.stash);else {
                 promise = this.stashService.create(this.stash).then(function (id) {
-                    _this2.stash.id = id;
-                    _this2.state.go('edit', { id: id, stash: _this2.stash });
+                    _this3.stash.id = id;
+                    _this3.state.go('edit', { id: id, stash: _this3.stash });
                 });
             }
 
             return promise.finally(function () {
-                _this2.stash.tags = _this2.stash.tags.filter(unique);
-                _this2.saving = false;
+                _this3.stash.tags = _this3.stash.tags.filter(unique);
+                _this3.saving = false;
             });
         }
     }]);
@@ -11099,7 +11111,7 @@ var ViewView = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_core__[
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_modal_dialog__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_modal_dialog__ = __webpack_require__(3);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultDialog; });
 var _dec, _class;
 
@@ -39059,25 +39071,26 @@ module.exports = function(module) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_ui_router__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_ui_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_ui_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng_modal_dialog__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng_modal_dialog__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_ui_lib__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_lib__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_styles_stash_scss__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_styles_stash_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_styles_stash_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_routes__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_ui__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__filters_markdown__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_code_editor__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_tag_editor__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_edit__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_view__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_search_query__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_search_tag__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_stash__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__config_dialogs__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_ui__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__filters_markdown__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_code_editor__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_tag_editor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_edit__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_view__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_search_query__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__views_search_tag__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_stash__ = __webpack_require__(31);
 
 
 
@@ -39087,6 +39100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // Config
+
 
 
 // Components
@@ -39104,9 +39118,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Services
 
 
-var app = __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('stash.app', [__WEBPACK_IMPORTED_MODULE_1_angular_ui_router___default.a, __WEBPACK_IMPORTED_MODULE_4_core_lib__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_core_ui_lib__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_ng_modal_dialog__["default"]]).config(__WEBPACK_IMPORTED_MODULE_6__config_routes__["a" /* RouteConfig */]).controller('EditView', __WEBPACK_IMPORTED_MODULE_11__views_edit__["a" /* EditView */]).controller('ViewView', __WEBPACK_IMPORTED_MODULE_12__views_view__["a" /* ViewView */]).controller('SearchQueryView', __WEBPACK_IMPORTED_MODULE_13__views_search_query__["a" /* SearchQueryView */]).controller('SearchTagView', __WEBPACK_IMPORTED_MODULE_14__views_search_tag__["a" /* SearchTagView */]).filter('markdown', __WEBPACK_IMPORTED_MODULE_8__filters_markdown__["a" /* MarkdownFilterProvider */]).directive('codeEditor', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_core_ui__["a" /* directive */])(__WEBPACK_IMPORTED_MODULE_9__directives_code_editor__["a" /* CodeEditorDirective */])).directive('tagEditor', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_core_ui__["a" /* directive */])(__WEBPACK_IMPORTED_MODULE_10__directives_tag_editor__["a" /* TagEditorDirective */])).service('StashService', __WEBPACK_IMPORTED_MODULE_15__services_stash__["a" /* StashService */]);
+var app = __WEBPACK_IMPORTED_MODULE_0_angular___default.a.module('stash.app', [__WEBPACK_IMPORTED_MODULE_1_angular_ui_router___default.a, __WEBPACK_IMPORTED_MODULE_4_core_lib__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_core_ui_lib__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_ng_modal_dialog__["default"]]).config(__WEBPACK_IMPORTED_MODULE_6__config_routes__["a" /* RouteConfig */]).config(__WEBPACK_IMPORTED_MODULE_7__config_dialogs__["a" /* DialogConfig */]).controller('EditView', __WEBPACK_IMPORTED_MODULE_12__views_edit__["a" /* EditView */]).controller('ViewView', __WEBPACK_IMPORTED_MODULE_13__views_view__["a" /* ViewView */]).controller('SearchQueryView', __WEBPACK_IMPORTED_MODULE_14__views_search_query__["a" /* SearchQueryView */]).controller('SearchTagView', __WEBPACK_IMPORTED_MODULE_15__views_search_tag__["a" /* SearchTagView */]).filter('markdown', __WEBPACK_IMPORTED_MODULE_9__filters_markdown__["a" /* MarkdownFilterProvider */]).directive('codeEditor', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_core_ui__["a" /* directive */])(__WEBPACK_IMPORTED_MODULE_10__directives_code_editor__["a" /* CodeEditorDirective */])).directive('tagEditor', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_core_ui__["a" /* directive */])(__WEBPACK_IMPORTED_MODULE_11__directives_tag_editor__["a" /* TagEditorDirective */])).service('StashService', __WEBPACK_IMPORTED_MODULE_16__services_stash__["a" /* StashService */]);
 
 /* harmony default export */ __webpack_exports__["default"] = app.name;
+
+/***/ }),
+/* 290 */,
+/* 291 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styles_modal_dialog_scss__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styles_modal_dialog_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_styles_modal_dialog_scss__);
+/* harmony export (immutable) */ __webpack_exports__["a"] = DialogConfig;
+// Can't @inject functions
+
+
+DialogConfig.$inject = ['$modalDialogProvider'];
+
+function DialogConfig(modalDialogProvider) {
+    modalDialogProvider.register('edit-tags', {
+        templateUrl: __webpack_require__(292),
+        controller: 'DefaultDialog',
+        controllerAs: 'vm'
+    });
+}
+
+/***/ }),
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "stash/dialogs/edit-tags.html";
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 ],[289]);

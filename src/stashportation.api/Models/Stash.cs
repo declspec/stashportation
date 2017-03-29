@@ -12,7 +12,7 @@ namespace Stashportation.Models {
     }
 
     public class Stash : StashSummary {
-        [Required(ErrorMessage = "Must provide some content in the stash"]
+        [Required(ErrorMessage = "Must provide some content in the stash")]
         public string Content { get; set; }
     }
 }

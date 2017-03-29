@@ -2,3 +2,9 @@
     border: 0;
     outline: 0;
 }
+
+.form-actions::after {
+    clear: both;
+    content: '';
+    display: table;
+}

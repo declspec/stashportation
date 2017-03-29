@@ -1,4 +1,6 @@
 // Can't @inject functions
+import 'styles/modal-dialog.scss';
+
 DialogConfig.$inject = ['$modalDialogProvider'];
 
 export function DialogConfig(modalDialogProvider) {

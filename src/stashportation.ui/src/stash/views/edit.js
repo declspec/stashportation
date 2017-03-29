@@ -1,4 +1,5 @@
 import { inject } from 'core';
+import { DialogResult } from 'ng-modal-dialog';
 
 import 'codemirror/mode/gfm/gfm';
 import 'styles/form.scss';
@@ -10,10 +11,11 @@ const EDITOR_OPTIONS = {
     lineWrapping: false
 };
 
-@inject('$state', 'StashService', 'ViewLoaderService')
+@inject('$state', '$modalDialog', 'StashService', 'ViewLoaderService')
 export class EditView {
-    constructor(state, stashService, viewLoaderService) {
+    constructor(state, modalDialog, stashService, viewLoaderService) {
         this.state = state;
+        this.modalDialog = modalDialog;
         this.stashService = stashService;
 
         this.options = EDITOR_OPTIONS;
@@ -33,6 +35,13 @@ export class EditView {
 
     isActive(setting) {
         return !!this.settings[setting];
+    }
+
+    showTagPrompt() {
+        this.modalDialog.show('edit-tags', { tags: this.stash.tags }, (result, scope) => {
+            if (result === DialogResult.Success)
+                this.stash.tags = scope.tags;
+        });
     }
 
     save() {

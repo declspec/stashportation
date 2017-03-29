@@ -460,20 +460,40 @@ function DialogDirectiveFill($modalDialog, $controller, $compile) {
 /***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
-__webpack_require__(5);
 __webpack_require__(4);
+__webpack_require__(5);
+__webpack_require__(3);
 module.exports = __webpack_require__(23);
 
 
 /***/ }),
 
 /***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(37);
-module.exports = angular;
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_dialog_params__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_dialog__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_directives__ = __webpack_require__(283);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DialogResult", function() { return __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__["a"]; });
 
+
+
+
+
+var lib = angular.module('ng-modal-dialog', [])
+    .constant('DialogResult', __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__["a" /* default */])
+
+    .provider('$modalDialog', __WEBPACK_IMPORTED_MODULE_2__src_dialog__["a" /* DialogProvider */])
+    .provider('$modalDialogParams', __WEBPACK_IMPORTED_MODULE_1__src_dialog_params__["a" /* DialogParamsProvider */])
+
+    .directive('modalDialog', __WEBPACK_IMPORTED_MODULE_3__src_directives__["a" /* DialogDirective */])
+    .directive('modalDialog', __WEBPACK_IMPORTED_MODULE_3__src_directives__["b" /* DialogDirectiveFill */]);
+
+
+/* harmony default export */ __webpack_exports__["default"] = lib.name;
 
 /***/ }),
 
@@ -33856,31 +33876,11 @@ function assign(target) {
 /***/ }),
 
 /***/ 4:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_dialog_params__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_dialog__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_directives__ = __webpack_require__(283);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DialogResult", function() { return __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__["a"]; });
+__webpack_require__(37);
+module.exports = angular;
 
-
-
-
-
-var lib = angular.module('ng-modal-dialog', [])
-    .constant('DialogResult', __WEBPACK_IMPORTED_MODULE_0__src_dialog_result__["a" /* default */])
-
-    .provider('$modalDialog', __WEBPACK_IMPORTED_MODULE_2__src_dialog__["a" /* DialogProvider */])
-    .provider('$modalDialogParams', __WEBPACK_IMPORTED_MODULE_1__src_dialog_params__["a" /* DialogParamsProvider */])
-
-    .directive('modalDialog', __WEBPACK_IMPORTED_MODULE_3__src_directives__["a" /* DialogDirective */])
-    .directive('modalDialog', __WEBPACK_IMPORTED_MODULE_3__src_directives__["b" /* DialogDirectiveFill */]);
-
-
-/* harmony default export */ __webpack_exports__["default"] = lib.name;
 
 /***/ }),
 

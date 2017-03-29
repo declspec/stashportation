@@ -8,6 +8,7 @@ import 'styles/stash.scss';
 
 // Config
 import { RouteConfig } from './config/routes';
+import { DialogConfig } from './config/dialogs';
 
 // Components
 import { directive } from 'core-ui';
@@ -26,6 +27,7 @@ import { StashService } from './services/stash';
 
 const app = angular.module('stash.app', [ uiRouter, core, coreUi, ngModalDialog ])
     .config(RouteConfig)
+    .config(DialogConfig)
 
     .controller('EditView', EditView)
     .controller('ViewView', ViewView)
